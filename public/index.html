@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Controllo Antenna ST24</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f6f6f6;
+      padding: 25px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    select, button {
+      padding: 6px;
+      margin: 4px 0;
+      font-size: 15px;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #0078D7;
+      color: white;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    #status {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .ok { color: green; }
+    .err { color: red; }
+    #data {
+      margin-top: 15px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    }
+    #log {
+      background: #000;
+      color: #0f0;
+      padding: 10px;
+      margin-top: 15px;
+      height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      border-radius: 4px;
+    }
+    #blink {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-left: 8px;
+      background: #ccc;
+      vertical-align: middle;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+    legend {
+      padding: 0 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛰️ Controllo Antenna ST24</h1>
+
+  <label>Porta seriale:</label>
+  <select id="ports"></select>
+  <button onclick="connect()">Connetti</button>
+
+  <div id="status">In attesa connessione <span id="blink"></span></div>
+
+  <fieldset id="data">
+    <legend>Dati antenna</legend>
+    <div>Segnale: <span id="level">-</span></div>
+    <div>NID: <span id="nid">-</span></div>
+    <div>Azimut: <span id="az">-</span></div>
+    <div>Elevazione: <span id="el">-</span></div>
+    <div>Polarizzazione: <span id="pol">-</span></div>
+    <div>Roll: <span id="roll">-</span> | Pitch: <span id="pitch">-</span> | Yaw: <span id="yaw">-</span></div>
+  </fieldset>
+
+  <div style="margin-top:20px">
+    <button onclick="sendCmd('$')">Inizio lavori ($)</button>
+    <button onclick="sendCmd('%')">Fine lavori (%)</button>
+  </div>
+
+  <fieldset>
+    <legend>Log comunicazioni</legend>
+    <div id="log"></div>
+  </fieldset>
+
+  <script src="script.js"></script>
+</body>
+</html>

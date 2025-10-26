@@ -1,0 +1,14 @@
+node_modules/
+logs/
+*.log
+.cache/
+.env
+.DS_Store
+.vscode/
+.idea/
+docker-compose.override.yml
+serial_logs/
+*.tmp
+*.bak
+*.old
+*.tar
